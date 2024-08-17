@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}| Регистрация{% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card" style="max-width: 400px; width: 100%;">
+        <div class="card-header">
+            <h4 class="text-center">Регистрация</h4>
+        </div>
+        <div class="card-body">
+            <form action="{% url 'register' %}" method="POST" novalidate>
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="{{ form.username.id_for_label }}" class="form-label">Имя пользователя:</label>
+                    {{ form.username }}
+                    <div class="text-danger">{{ form.username.errors }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.first_name.id_for_label }}" class="form-label">Имя:</label>
+                    {{ form.first_name }}
+                    <div class="text-danger">{{ form.first_name.errors }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.last_name.id_for_label }}" class="form-label">Фамилия:</label>
+                    {{ form.last_name }}
+                    <div class="text-danger">{{ form.last_name.errors }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">Электронная почта:</label>
+                    {{ form.email }}
+                    <div class="text-danger">{{ form.email.errors }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.password1.id_for_label }}" class="form-label">Придумайте пароль:</label>
+                    {{ form.password1 }}
+                    <div class="text-danger">{{ form.password1.errors }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.password2.id_for_label }}" class="form-label">Подтвердите пароль:</label>
+                    {{ form.password2 }}
+                    <div class="text-danger">{{ form.password2.errors }}</div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Регистрация</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

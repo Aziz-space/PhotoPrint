@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}| Обновить услугу{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Обновить услугу</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        
+                        
+                        <div class="form-group">
+                            <label for="{{ form.title.id_for_label }}">Название</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.image.id_for_label }}">Изображение</label>
+                            {{ form.image }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.description.id_for_label }}">Описание</label>
+                            {{ form.description }}
+                        </div>
+
+                       
+                        <div class="form-group">
+                            <label>Размеры</label>
+                            {% for size_form in size_forms %}
+                                <div class="form-group">
+                                    {{ size_form.width.label_tag }} {{ size_form.width }}
+                                    {{ size_form.height.label_tag }} {{ size_form.height }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

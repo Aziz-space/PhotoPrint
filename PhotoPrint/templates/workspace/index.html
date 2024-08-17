@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Список услуг{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Список услуг</h1>
+       
+        <a href="{% url 'add_service' %}" class="btn btn-primary mb-4">Добавить новую услугу</a>
+        
+        <div class="row">
+            {% for service in services %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ service.title }}</h5>
+                            <p class="card-text">Цена: {{ service.price }}</p>
+                            <p class="card-text">Ширина: {{ service.width }} см</p>
+                            <p class="card-text">Высота: {{ service.height }} см</p>
+                            <a href="{% url 'update_service' service.id %}" class="btn btn-warning">Редактировать</a>
+                            
+                            <form method="post" action="{% url 'delete_service' service.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Удалить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

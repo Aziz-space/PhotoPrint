@@ -1,0 +1,47 @@
+{% load static %}
+
+<nav class="navbar">
+    <div class="logo">
+        <a href="{% url 'index' %}">
+            <div class="logo-image">
+                <img src="{% static 'img/Logo (2).png' %}" alt="Logo"/>
+            </div>
+        </a>
+    </div>
+
+    <ul class="nav-links">
+        <li class="nav-item">Наши услуги</li>
+        <li class="nav-item prices-item"><a href="{% url 'prices' %}">Цены</a></li>
+        <li class="nav-item">Отзывы</li>
+        <li class="nav-item">Контакты</li>
+        
+        <li class="nav-item dropdown">
+            <span class="dropdown-toggle">Ещё</span>
+            <img class="dropdown-icon" src="{% static 'img/Vector 2.png' %}" alt="More"/>
+            <ul class="dropdown-menu">
+                <li><a href="#" class="dropdown-link">Нестандартные размеры печати</a></li>
+                <li><a href="#" class="dropdown-link">Доставка</a></li>
+                <li><a href="#" class="dropdown-link">Опция 3</a></li>
+            </ul>
+        </li>
+        <li class="nav-item auth-links">
+    {% if request.user.is_authenticated %}
+    <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle">
+            {{ request.user.username }}
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'workspace' %}">Workspace</a></li>
+            <li><a class="dropdown-item" href="{% url 'profile'%}">Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </li>
+    {% else %}
+    <a href="{% url 'login' %}" class="nav-link">Вход</a>
+    <span class='separator'>|</span>
+    <a href="{% url 'register' %}" class="nav-link">Регистрация</a>
+    {% endif %}
+</li>
+
+    </ul>
+</nav>

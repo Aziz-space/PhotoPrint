@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/prices.css' %}">
+<script src="{% static 'scripts/prices.js' %}" defer></script>
+
+
+{% block content %}
+<h1 class='Price-h'>Цены</h1>
+
+<div class="Prices-container">
+    <div class="Frame">
+        <table>
+            <thead>
+                <tr>
+                    <th>Размер</th>
+                    <th>Цена</th>
+                    <th>Количество</th>
+                    <th>Итоговая цена</th>
+                    <th>Ламинация</th>
+                </tr>
+            </thead>
+            <tbody id="items-table-body">
+                
+                <tr>
+                    <td>30x40 см</td>
+                    <td class="price">10</td>
+                    <td>
+                        <button class="decrement">-</button>
+                        <input type="number" class="quantity" value="1" min="1">
+                        <button class="increment">+</button>
+                    </td>
+                    <td class="total-price">10</td>
+                    <td><input type="checkbox" class="lamination"></td>
+                </tr>
+                
+                <tr>
+                    <td>40x50 см</td>
+                    <td class="price">15</td>
+                    <td>
+                        <button class="decrement">-</button>
+                        <input type="number" class="quantity" value="1" min="1">
+                        <button class="increment">+</button>
+                    </td>
+                    <td class="total-price">15</td>
+                    <td><input type="checkbox" class="lamination"></td>
+                </tr>
+
+                <tr>
+                    <td>40x50 см</td>
+                    <td class="price">15</td>
+                    <td>
+                        <button class="decrement">-</button>
+                        <input type="number" class="quantity" value="1" min="1">
+                        <button class="increment">+</button>
+                    </td>
+                    <td class="total-price">15</td>
+                    <td><input type="checkbox" class="lamination"></td>
+                </tr>
+
+
+                <tr>
+                    <td>40x50 см</td>
+                    <td class="price">15</td>
+                    <td>
+                        <button class="decrement">-</button>
+                        <input type="number" class="quantity" value="1" min="1">
+                        <button class="increment">+</button>
+                    </td>
+                    <td class="total-price">15</td>
+                    <td><input type="checkbox" class="lamination"></td>
+                </tr>
+
+                <tr>
+                    <td>40x50 см</td>
+                    <td class="price">15</td>
+                    <td>
+                        <button class="decrement">-</button>
+                        <input type="number" class="quantity" value="1" min="1">
+                        <button class="increment">+</button>
+                    </td>
+                    <td class="total-price">15</td>
+                    <td><input type="checkbox" class="lamination"></td>
+                </tr>
+
+
+                <tr>
+                    <td>40x50 см</td>
+                    <td class="price">15</td>
+                    <td>
+                        <button class="decrement">-</button>
+                        <input type="number" class="quantity" value="1" min="1">
+                        <button class="increment">+</button>
+                    </td>
+                    <td class="total-price">15</td>
+                    <td><input type="checkbox" class="lamination"></td>
+                </tr>
+              
+            </tbody>
+        </table>
+    </div>
+    <div class="C_P">
+        <h6><span>Кол-во:</span> <span id="total-quantity">1</span></h6>
+        <h6><span>Итог:</span> <span id="total-price">10</span> ₽</h6>
+    </div>
+
+    <div class="making_order">
+        <h6>Оформление заказа</h6>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
+            Загрузить фотографии
+        </button>
+        <button style='margin-top:50px;'>оформить заказ</button>
+        <div class="input">
+            <input type="text" placeholder=" ФИО (Полностью)">
+        </div>
+        <div class="input">
+            <input type="email" placeholder=" Почта/Telegram/What'sApp/логинVK">
+        </div>
+        <div class="input">
+            <input type="tel" placeholder=" Номер телефона">
+        </div>
+        <div class="input">
+            <input type="text" placeholder=" Пожелания клиента">
+        </div>
+
+
+        <div class="Warning">
+            <img src="{% static 'img/image12.png'%}" alt="">
+            <p><span>Внимание:</span> вы оформляете заказ без 
+            выгодного режима, заказывая с
+            выгодным режимом ваша экономия
+            составит: <span>25 010 ₽ (250 фотографий)</span></p>
+        </div>
+    </div>
+
+
+ 
+<div class="custom-modal" id="uploadModal">
+    <div class="custom-modal-dialog">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <h5 class="custom-modal-title">Загрузка изображений</h5>
+                <button type="button" class="custom-btn-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="custom-modal-body">
+                <form id="uploadForm" action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" class="form-control" id="imageFile" name="image" multiple style="display: none;">
+                    <div class="btns_container">
+                        <button type="button" class="btn btn-primary" onclick="document.getElementById('imageFile').click();">Загрузить изображение</button>
+                        <button type="submit" class="btn btn-secondary">Отправить фотографии</button>
+                    </div>
+                </form>
+                <div class="images-preview-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+{% endblock %}
